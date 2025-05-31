@@ -2,7 +2,7 @@
   "angular-schematics.schematicsDefaultOptions": {
     "angular-*": {
       "externalTemplate": true,
-      "skipStyle": false
+      "skipStyle": true
     }
   }
 }

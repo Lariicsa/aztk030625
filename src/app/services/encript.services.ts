@@ -3,16 +3,17 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '@environments/environment.development';
 import type { EncriptResponse } from '../encription/interfaces/encript.interface';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class EncriptService {
-  private http = inject(HttpClient)
+  private http = inject(HttpClient);
 
   constructor() {
-    this.getTextEncription()
+    this.getTextEncription();
   }
 
-  getTextEncription(){
-    this.http.get<EncriptResponse>(`${environment.apiUrl}/pikachu`)
+  getTextEncription() {
+    this.http.get<EncriptResponse>(`${environment.apiUrl}/pikachu`).subscribe((res)=>{
+      console.log([res])
+    });
   }
-
 }

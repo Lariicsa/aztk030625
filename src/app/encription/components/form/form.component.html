@@ -1,36 +1,27 @@
 <div
-  class="flex-col w-full sm:max-w-[410px] bg-[#000012] h-full p-[25px] mx-auto my-auto text-[#c2c2c2]"
+  class="flex-col w-full h-auto mt-[40px] text-[#8d8d8d] text-[14px] flex-wrap"
 >
-  <img [src]="imageUrl" class="w-full min-w-[250px] min-w-[228px]" />
-  <h1 class="flex-col font-[500] center text-3xl mt-[24px]">
-    ¡Te damos la bienvenida a Banco Azteca!
-  </h1>
-  <p class="text-[16px]">
-    Usa tu préstamo como dinero en efectivo o compra en donde quieras.
-  </p>
+  <div
+    class="flex-col flex-wrap border-b border-[#8d8d8d] bg-transparent w-full h-auto font-[400]"
+  >
+    <span>¿Cómo prefieres que te llamemos?</span>
+    <input
+      type="text"
+      placeholder="Escribe tu nombre"
+      class="border-0 bg-transparent w-full h-[37px]"
+      #inputText
+      (keyup.enter)="onTextTyped(inputText.value)"
+    />
+  </div>
+  <span class="flex mr-auto">0/15 caracteres</span>
 
   <div
-    class="flex-col w-full h-auto mt-[40px] text-[#8d8d8d] text-[14px] flex-wrap"
+    class="block w-auto mt-[24px] text-wrap"
+    *ngIf="EncriptService.encryptedSignal() as encrypted"
   >
-    <div
-      class="flex flex-wrap border-b border-[#8d8d8d] bg-transparent w-full h-auto font-[400]"
-    >
-      <span>¿Cómo prefieres que te llamemos?</span>
-      <input
-        type="text"
-        placeholder="Escribe tu nombre"
-        class="border-0 bg-transparent w-full h-[37px]"
-        #inputText
-        (keyup.enter)="onTextTyped(inputText.value)"
-      />
-    </div>
-    <span class="flex mr-auto">0/15 caracteres</span>
-
-    <div
-      class="block w-auto mt-[24px] text-wrap"
-      *ngIf="EncriptService.encryptedSignal() as encrypted"
-    >
-      <p class="block text-green-200 text-wrap break-all">{{ encrypted }}</p>
-    </div>
+    <strong class="text-green-200 text-[13px]">Encriptado:</strong>
+    <p class="block text-green-200 text-wrap break-all text-[13px]">
+      {{ encrypted }}
+    </p>
   </div>
 </div>

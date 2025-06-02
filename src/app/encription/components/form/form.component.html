@@ -9,17 +9,28 @@
     Usa tu préstamo como dinero en efectivo o compra en donde quieras.
   </p>
 
-  <div class="flex-col w-full h-auto mt-[40px] text-[#8d8d8d] text-[14px]">
+  <div
+    class="flex-col w-full h-auto mt-[40px] text-[#8d8d8d] text-[14px] flex-wrap"
+  >
     <div
-      class="border-b border-[#8d8d8d] bg-transparent w-full h-auto font-[400]"
+      class="flex flex-wrap border-b border-[#8d8d8d] bg-transparent w-full h-auto font-[400]"
     >
       <span>¿Cómo prefieres que te llamemos?</span>
       <input
         type="text"
         placeholder="Escribe tu nombre"
         class="border-0 bg-transparent w-full h-[37px]"
+        #inputText
+        (keyup.enter)="onTextTyped(inputText.value)"
       />
     </div>
     <span class="flex mr-auto">0/15 caracteres</span>
+
+    <div
+      class="block w-auto mt-[24px] text-wrap"
+      *ngIf="EncriptService.encryptedSignal() as encrypted"
+    >
+      <p class="block text-green-200 text-wrap break-all">{{ encrypted }}</p>
+    </div>
   </div>
 </div>

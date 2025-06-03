@@ -1,10 +1,10 @@
-import { Component, inject, signal } from '@angular/core';
-import { AppFormComponent } from 'src/app/encription/components/form/form.component';
+import { Component} from '@angular/core';
+import { EncriptionFormComponent } from 'src/app/encryption/components/encriptionForm/encriptionForm.component';
 import { environment } from '@environments/environment.development';
 
 @Component({
   selector: 'app-home-page',
-  imports: [AppFormComponent],
+  imports: [EncriptionFormComponent],
   templateUrl: './home-page.component.html',
 })
 export class HomePageComponent {

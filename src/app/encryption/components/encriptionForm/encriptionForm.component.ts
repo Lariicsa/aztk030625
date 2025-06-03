@@ -1,16 +1,15 @@
 import { Component, input, inject, signal, computed } from '@angular/core';
 import { EncriptService } from '../../../services/encript.services';
 import { FormsModule } from '@angular/forms';
-import { EncriptResponse } from '../../interfaces/encript.interface';
 import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-form',
+  selector: 'encription-form',
   standalone: true,
   imports: [FormsModule, NgIf],
-  templateUrl: './form.component.html',
+  templateUrl: './encriptionForm.component.html',
 })
-export class AppFormComponent {
+export class EncriptionFormComponent {
   textTyped: string = '';
   private encriptService = inject(EncriptService);
   encryptedResponse = computed(() => this.encriptService.encryptedSignal());

@@ -1,29 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '@environments/environment.development';
-import type { EncriptResponse } from '../encription/interfaces/encript.interface';
+import type { EncriptResponse } from '../encryption/interfaces/encript.interface';
 
 @Injectable({ providedIn: 'root' })
 export class EncriptService {
   private http = inject(HttpClient);
+
   encryptedSignal = signal<string | null>(null);
+  errorSignal = signal<string | null>(null);
 
   constructor() {}
 
-  encryptText(query: string) {
+  encryptText(data: string) {
     this.http
       .post<EncriptResponse>(`${environment.apiUrl}`, {
-        text: query,
+        text: data,
       })
       .subscribe({
         next: (response) => {
           console.log(response);
-
           this.encryptedSignal.set(response.encrypted);
+          this.errorSignal.set(null);
         },
-        error: (err) => {
+        error: (err: any) => {
           console.error('Error al encriptar:', err);
           this.encryptedSignal.set(null);
+          this.errorSignal.set('No se pudo encriptar el texto');
         },
       });
   }

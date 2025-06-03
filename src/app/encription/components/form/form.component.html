@@ -1,27 +1,33 @@
 <div
   class="flex-col w-full h-auto mt-[40px] text-[#8d8d8d] text-[14px] flex-wrap"
 >
-  <div
-    class="flex-col flex-wrap border-b border-[#8d8d8d] bg-transparent w-full h-auto font-[400]"
+  <form
+    class="flex-col flex-wrap bg-transparent w-full h-auto font-[400]"
+    (ngSubmit)="onTextTyped()"
   >
-    <span>¿Cómo prefieres que te llamemos?</span>
+    <label for="textInput">¿Cómo prefieres que te llamemos?</label>
     <input
+      class="border-0 bg-transparent border-b border-[#8d8d8d] w-full h-[37px]"
       type="text"
+      [(ngModel)]="textTyped"
+      name="textInput"
       placeholder="Escribe tu nombre"
-      class="border-0 bg-transparent w-full h-[37px]"
-      #inputText
-      (keyup.enter)="onTextTyped(inputText.value)"
     />
-  </div>
-  <span class="flex mr-auto">0/15 caracteres</span>
+    <button
+      class="w-full mt-[40px] rounded-full border-0 bg-[#ccc] max-w-[356px] h-[42px] text-white text-[16px]"
+      type="submit"
+    >
+      Comenzar
+    </button>
+  </form>
 
   <div
     class="block w-auto mt-[24px] text-wrap"
-    *ngIf="EncriptService.encryptedSignal() as encrypted"
+    *ngIf="encryptedResponse() as result"
   >
-    <strong class="text-green-200 text-[13px]">Encriptado:</strong>
+    <h4 class="text-green-200 text-[13px] bold">Texto encriptado:</h4>
     <p class="block text-green-200 text-wrap break-all text-[13px]">
-      {{ encrypted }}
+      {{ result }}
     </p>
   </div>
 </div>

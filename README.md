@@ -1,7 +1,11 @@
 
 # Documentación 
 
-despues de clonar el repo y acceder a la carpeta principal:
+despues de clonar el repositorio y acceder a la carpeta principal:
+
+#### Variables de entorno `.env`
+En el archivo keys.txt están las variables de entorno que se deben agregar a un archivo `.env` en la raíz de la carpeta `backend`
+`backend > .env`
 
 ### Correr el siguiente comando:
 

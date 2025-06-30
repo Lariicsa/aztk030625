@@ -1,6 +1,8 @@
 
 # Instrucciones
 
+## Correr en ambiente _development_
+
 despues de clonar el repositorio y acceder a la carpeta principal:
 
 #### Variables de entorno `.env`

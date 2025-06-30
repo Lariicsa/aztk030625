@@ -1,0 +1,12 @@
+FROM node:22
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+# Montamos el código fuera para hot reload, así que no copiamos todo acá
+
+EXPOSE 4200
+
+CMD ["npm", "start"]

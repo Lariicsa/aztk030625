@@ -8,17 +8,27 @@
     <label for="textInput">¿Cómo prefieres que te llamemos?</label>
     <div class="flex justify-between items-center w-full">
       <input
-      class="border-0 bg-transparent border-b border-[#8d8d8d] w-11/12 h-[37px]"
-      type="text"
-      [(ngModel)]="textTyped"
-      name="textInput"
-      placeholder="Escribe tu nombre"
-    />
-    <app-microphone (textRecognized)="onSpeechRecognized($event)"></app-microphone>
-
+        class="border-0 bg-transparent border-b border-[#8d8d8d] w-11/12 h-[37px]"
+        [ngClass]="{ 'text-red-400': isTooLong() }"
+        type="text"
+        [ngModel]="textTyped()"
+        (ngModelChange)="textTyped.set($event)"
+        name="textInput"
+        placeholder="Escribe tu nombre"
+      />
+      <app-microphone
+        (textRecognized)="onSpeechRecognized($event)"
+      ></app-microphone>
     </div>
-     <button
-      class="flex justify-center items-center mx-auto w-full mt-[40px] rounded-full border-0 bg-[#ccc] sm:max-w-[356px] h-[42px] text-white text-[16px]"
+    <span class="w-max ml-0 mr-auto">{{ charCount() }}/15 caracteres</span>
+
+    <button
+      class="flex justify-center items-center mx-auto w-full mt-[40px] rounded-full border-0 sm:max-w-[356px] h-[42px] text-white text-[16px]"
+      [ngClass]="{
+        'bg-green-600': isInputValid(),
+        'bg-[#ccc]': !isInputValid() || isTooLong()
+      }"
+      [disabled]="!isInputValid() || isTooLong()"
       type="submit"
     >
       Comenzar
@@ -29,8 +39,8 @@
     class="block w-auto mt-[24px] text-wrap"
     *ngIf="encryptedResponse() as result"
   >
-    <h4 class="text-green-200 text-[13px] bold">Texto encriptado:</h4>
-    <p class="block text-green-200 text-wrap break-all text-[13px]">
+    <h4 class="text-green-200 text-[13px] font-bold">Texto encriptado:</h4>
+    <p class="block text-green-200 break-all text-[13px]">
       {{ result }}
     </p>
   </div>
